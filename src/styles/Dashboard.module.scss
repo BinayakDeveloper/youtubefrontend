@@ -1,0 +1,91 @@
+.dashboardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    >.dashboardElements {
+        background: rgb(220, 220, 220);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: 15px;
+        padding: 1rem;
+
+        >.userDetails {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 100%;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #b4b4b4;
+
+            >.profilePic {
+                background-color: rgb(60, 60, 60);
+                border-radius: 50%;
+                padding: 7px 18px;
+
+                >p {
+                    font-size: 1.5rem;
+                    color: white;
+                    font-weight: bold;
+                }
+            }
+
+            >.userName {
+                >p {
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                    letter-spacing: 0.8px;
+                    text-transform: capitalize;
+                }
+            }
+        }
+
+        >.otherDetails {
+            text-align: start;
+
+            >p {
+                font-size: 1.1rem;
+            }
+        }
+
+        >.dashboardStatus {
+            width: 100%;
+            text-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 7px;
+
+            >p {
+                font-size: 1.1rem;
+
+                &:last-child {
+                    background-color: rgb(0, 160, 0);
+                    color: #fff;
+                    width: fit-content;
+                    padding: 2px 8px;
+                    border-radius: 5px;
+                }
+            }
+        }
+
+        >.logout {
+            cursor: pointer;
+            margin-top: 5px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            background-color: red;
+            color: #fff;
+            padding: 2px 7px;
+            border-radius: 5px;
+        }
+    }
+}

@@ -1,0 +1,333 @@
+.watchContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 6rem;
+
+    >.containerElements {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        >.leftElements {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 15px;
+            width: 65%;
+
+            >.mainVideo {
+                width: 98%;
+
+                >video {
+                    outline: 0;
+                    border: 0;
+                    width: 100%;
+                    border-radius: 10px;
+                    height: 500px;
+                }
+            }
+
+            >.videoInfo {
+                color: #fff;
+                width: 100%;
+
+                >.title {
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                }
+
+                >.channelInfo {
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: space-between;
+                    margin: 10px 0;
+
+                    >.leftInfo {
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: center;
+                        gap: 10px;
+
+                        >img {
+                            height: 45px;
+                            border-radius: 50%;
+                        }
+
+                        >.titleSub {
+                            >p {
+                                font-size: 0.95rem;
+
+                                &:first-child {
+                                    font-weight: bold;
+                                    letter-spacing: 1px;
+                                }
+
+                                &:last-child {
+                                    font-size: 0.8rem;
+                                    opacity: 0.8;
+                                }
+                            }
+                        }
+                    }
+
+                    >.rightInfo {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 7px;
+                        margin-right: 10px;
+
+                        >.views {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 6px;
+                            background: #454545;
+                            padding: 5px 10px;
+                            border-radius: 30px;
+
+                            >p {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 10px;
+
+                                >svg {
+                                    font-size: 1.4rem;
+                                }
+                            }
+                        }
+
+                        >.watchLater {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 5px;
+                            cursor: pointer;
+                            background-color: #454545;
+                            padding: 5px 10px;
+                            border-radius: 30px;
+                            transition: 0.2s ease;
+
+                            &:hover {
+                                background-color: #656565;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        >.rightElements {
+            width: 34%;
+
+            >.relatedContainer {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 7px;
+
+                >a {
+                    text-decoration: none;
+
+                    >.relatedElements {
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: flex-start;
+                        gap: 10px;
+                        color: #fff;
+
+                        >.relatedLeftElements {
+                            position: relative;
+
+                            >.relatedThumbnail {
+                                >img {
+                                    height: 100px;
+                                    width: 180px;
+                                    border-radius: 8px;
+                                }
+                            }
+
+                            >.timeStamp {
+                                position: absolute;
+                                background: #262626;
+                                color: #fff;
+                                right: 4px;
+                                bottom: 10px;
+                                font-size: 13px;
+                                padding: 1px 3px;
+                                border-radius: 5px;
+                            }
+                        }
+
+                        >.relatedRightElements {
+                            display: flex;
+                            align-items: flex-start;
+                            justify-content: flex-start;
+                            flex-direction: column;
+                            gap: 2px;
+
+                            >.relatedTitle {
+                                width: 200px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+
+                                >p {
+                                    font-size: 17px;
+                                    display: inline;
+                                }
+                            }
+
+                            >.relatedChannelName,
+                            >.relatedViewsDate {
+                                >p {
+                                    font-size: 14px;
+                                    opacity: 0.8;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:1500px) {
+    .watchContainer {
+        padding: 1rem;
+
+        >.containerElements {
+            >.leftElements {
+                width: 100%;
+
+                >.mainVideo {
+                    width: 100%;
+
+                    >video {
+                        height: 450px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:650px) {
+    .watchContainer {
+        >.containerElements {
+            >.leftElements {
+                align-items: center;
+
+                >.mainVideo {
+                    width: 100vw;
+                    margin-top: -40px;
+                    padding: 0 5px;
+
+                    >video {
+                        height: 300px;
+                    }
+                }
+
+                >.videoInfo {
+                    width: 100vw;
+
+                    >.title {
+                        font-size: 0.95rem;
+                        padding: 0 10px;
+                    }
+
+                    >.channelInfo {
+                        padding: 0 10px;
+
+                        >.leftInfo {
+                            >img {
+                                height: 30px;
+                            }
+
+                            >.titleSub {
+                                >p {
+                                    font-size: 0.8rem;
+
+                                    &:last-child {
+                                        font-size: 0.7rem;
+                                    }
+                                }
+                            }
+                        }
+
+                        >.rightInfo {
+                            >.views {
+                                >p {
+                                    font-size: 0.8rem;
+                                    gap: 5px;
+
+                                    >svg {
+                                        font-size: 1rem;
+                                    }
+                                }
+                            }
+
+                            >.watchLater {
+                                >p {
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            >.rightElements {
+                width: 100%;
+
+                >.relatedContainer {
+                    >a {
+                        width: 100%;
+
+                        >.relatedElements {
+                            padding: 5px 10px;
+
+                            >.relatedLeftElements {
+                                >.relatedThumbnail {
+                                    >img {
+                                        width: fit-content;
+                                    }
+                                }
+                            }
+
+                            >.relatedRightElements {
+                                width: 50%;
+
+                                >.relatedTitle {
+                                    width: auto;
+                                    white-space: pre-wrap;
+                                    max-height: 75px;
+
+                                    >p {
+                                        font-size: 0.95rem;
+                                    }
+                                }
+
+                                >.relatedChannelName,
+                                >.relatedViewsDate {
+                                    >p {
+                                        font-size: 12px;
+                                        opacity: 0.8;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

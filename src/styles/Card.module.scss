@@ -1,0 +1,190 @@
+.card {
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    color: #fff;
+    max-width: min-content;
+    max-height: 500px;
+
+    >.thumbnail {
+        position: relative;
+
+        >img {
+            min-height: 200px;
+            max-height: 200px;
+            min-width: 350px;
+            max-width: 350px;
+            border-radius: 10px;
+        }
+
+        >.vidLength {
+            background: #262626;
+            color: #fff;
+            position: absolute;
+            right: 4px;
+            bottom: 10px;
+            font-size: 13px;
+            padding: 1px 3px;
+            border-radius: 5px;
+        }
+    }
+
+    >.otherInfo {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+
+        >.logo {
+            >img {
+                height: 35px;
+                border-radius: 50%;
+            }
+        }
+
+        >.videoInfo {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 3px;
+
+            >.title {
+                >p {
+                    font-weight: bold;
+                    letter-spacing: 0.2px;
+                }
+            }
+
+            >.channelName {
+                font-size: 0.9rem;
+                opacity: 0.8;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                >img {
+                    height: 17px;
+                }
+            }
+
+            >.viewsPublish {
+                display: flex;
+                gap: 5px;
+
+                >p {
+                    font-size: 0.9rem;
+                    opacity: 0.8;
+                }
+            }
+        }
+
+        >.watchLater {
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            &:hover {
+                background-color: rgba(99, 99, 99, 0.479);
+                border-radius: 50%;
+            }
+
+            >.wlOption {
+                background: #4e4e4e;
+                position: absolute;
+                margin-top: 80px;
+                padding: 10px 5px;
+                border-radius: 5px;
+                transition: 0.2s ease;
+
+                &:hover {
+                    background-color: #696969;
+                }
+
+                >.watchLaterBtn {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 5px;
+
+
+                    >svg {
+                        font-size: 1.3rem;
+                        font-weight: bold;
+                    }
+
+                    >span {
+                        font-weight: bold;
+                        letter-spacing: 0.8px;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width:800px) {
+    .card {
+        max-height: 500px;
+        max-width: 320px;
+
+        >.thumbnail {
+            >img {
+                min-height: 200px;
+                max-height: 200px;
+                min-width: 320px;
+                max-width: 320px;
+            }
+        }
+
+        >.otherInfo {
+            >.logo {
+                >img {
+                    height: 30px;
+                }
+            }
+
+            >.videoInfo {
+                >.title {
+                    >p {
+                        font-size: 0.9rem;
+                    }
+                }
+
+                >.channelName {
+                    font-size: 0.8rem;
+                }
+
+                >.viewsPublish {
+                    >p {
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+
+            >.watchLater {
+                padding: 5px;
+
+                >.wlOption {
+                    padding: 7px;
+
+                    >.watchLaterBtn {
+                        >svg {
+                            font-size: 1.2rem;
+                        }
+
+                        >span {
+                            font-size: 0.9rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

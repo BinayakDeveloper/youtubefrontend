@@ -1,0 +1,215 @@
+.loginFirst {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 40px;
+
+    >.warningImg {
+        >img {
+            mix-blend-mode: difference;
+            height: 40vh;
+        }
+    }
+
+    >.text {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+        letter-spacing: 0.8px;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .loginFirst {
+        margin-top: 20px;
+
+        >.warningImg {
+            >img {
+                height: 50vh;
+            }
+        }
+
+        >.text {
+            font-size: 0.9rem;
+        }
+    }
+}
+
+/* Video Card Styles */
+
+.allVideos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 10px;
+
+    >.videoContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        >a {
+            text-decoration: none;
+
+            >.videoElements {
+                width: 60vw;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                gap: 15px;
+
+                >.leftElements {
+                    >.thumbnail {
+                        >img {
+                            height: 220px;
+                            width: 380px;
+                            margin-bottom: -7px;
+                            border-radius: 10px;
+                        }
+                    }
+                }
+
+                >.rightElements {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    color: white;
+
+                    >.first {
+                        display: flex;
+                        align-items: flex-start;
+                        flex-direction: column;
+                        justify-content: center;
+                        gap: 13px;
+
+                        >.videoTitle {
+                            >p {
+                                font-weight: 600;
+                                letter-spacing: 1.4px;
+                                font-size: 1.2rem;
+                            }
+                        }
+
+                        >.videoInfo {
+                            >p {
+                                font-size: 0.9rem;
+                                opacity: 0.8;
+                            }
+                        }
+
+                        .channelInfo {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 7px;
+
+                            >img {
+                                height: 22px;
+                                border-radius: 50%;
+                                margin-bottom: -1px;
+                            }
+
+                            >p {
+                                font-size: 0.9rem;
+                                opacity: 0.8;
+                            }
+                        }
+                    }
+
+                    >.last {
+                        margin-left: 30px;
+
+                        >.deleteVideo {
+                            padding: 5px;
+                            border-radius: 50%;
+                            transition: 0.2s;
+                            background-color: rgb(72, 72, 72);
+
+                            &:hover {
+                                background-color: rgb(197, 0, 0);
+                            }
+
+                            >svg {
+                                font-size: 1.3rem;
+                                margin-bottom: -5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:1050px) {
+    .videoContainer {
+        >a {
+            >.videoElements {
+                width: 90vw;
+                flex-direction: column;
+
+                >.leftElements {
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+
+                    >.thumbnail {
+
+                        >img {
+                            height: 175px;
+                        }
+                    }
+                }
+
+                >.rightElements {
+                    >.first {
+                        gap: 10px;
+
+                        >.videoTitle {
+                            >p {
+                                font-size: 0.9rem;
+                            }
+                        }
+
+                        >.videoInfo {
+                            >p {
+                                font-size: 0.8rem;
+                            }
+                        }
+
+                        >.channelInfo {
+                            >img {
+                                height: 19px;
+                            }
+
+                            >p {
+                                font-size: 0.8rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:500px) {
+    .videoContainer {
+        >a {
+            >.videoElements {
+                >.leftElements {
+                    >.thumbnail {
+                        >img {
+                            width: 90vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
