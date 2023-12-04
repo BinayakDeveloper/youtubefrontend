@@ -10,11 +10,13 @@ function Watchlater() {
   const [id, setId] = useState([]);
   const [token, setToken] = useState(null);
   const [dbIds, setDbIds] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     let token = localStorage.getItem("sessionId");
     if (token === null) {
       setIsLogged(false);
+      setLoaded(true);
     } else {
       async function userValidate() {
         let response = await axios.post(process.env.REACT_APP_ALL_VIDEO_ID, {
@@ -29,6 +31,7 @@ function Watchlater() {
         } else {
           setIsLogged(false);
         }
+        setLoaded(true);
       }
       userValidate();
     }
@@ -38,18 +41,20 @@ function Watchlater() {
     <>
       {isLogged ? (
         id.length !== 0 ? (
-          <div className={WatchlaterCss.allVideos}>
-            {id.map((vidId, ind) => {
-              return (
-                <WatchlaterVideoCard
-                  key={ind}
-                  token={token}
-                  videoId={vidId}
-                  dbIds={dbIds}
-                />
-              );
-            })}
-          </div>
+          loaded ? (
+            <div className={WatchlaterCss.allVideos}>
+              {id.map((vidId, ind) => {
+                return (
+                  <WatchlaterVideoCard
+                    key={ind}
+                    token={token}
+                    videoId={vidId}
+                    dbIds={dbIds}
+                  />
+                );
+              })}
+            </div>
+          ) : null
         ) : (
           <div
             className="noVideos"
@@ -75,7 +80,7 @@ function Watchlater() {
             </p>
           </div>
         )
-      ) : (
+      ) : loaded ? (
         <div className={WatchlaterCss.loginFirst}>
           <div className={WatchlaterCss.warningImg}>
             <img src={warningImg} alt="warning" />
@@ -84,7 +89,7 @@ function Watchlater() {
             <p>Login First To Use This Feature</p>
           </div>
         </div>
-      )}
+      ) : null}
     </>
   );
 }
