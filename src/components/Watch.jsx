@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 
 import WatchCss from "../styles/Watch.module.scss";
+import Loader from "./Loader";
 import { IoEyeOutline } from "react-icons/io5";
 import { MdSaveAlt } from "react-icons/md";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
@@ -81,7 +82,6 @@ function Watch() {
         console.clear();
       }
     }
-
     getVideoDetails();
   }, [id, api, index]);
 
@@ -95,20 +95,17 @@ function Watch() {
             token: token,
           })
         ).data;
-        console.log(userStatus);
         if (userStatus.status) {
           setToken(token);
-          setAddedVideo(userStatus.videoId);
-          if (userStatus.videoId.includes(videoData.id)) {
+          setAddedVideo(userStatus.data.videoId);
+          if (userStatus.data.videoId.includes(videoData.id)) {
             setIsSaved(true);
           } else {
             setIsSaved(false);
           }
-          setLoaded(true);
         }
-      } else {
-        setLoaded(true);
       }
+      setLoaded(true);
     }
     tokenValidate();
   }, [videoData]);
@@ -150,131 +147,128 @@ function Watch() {
 
   return (
     <>
-      {videoData.formats !== undefined && channelData.length !== 0 ? (
-        loaded ? (
-          <>
+      {loaded ? (
+        videoData.formats !== undefined && channelData.length !== 0 ? (
+          <div className={WatchCss.watchContainer}>
             <Toaster containerStyle={{ top: "80px" }} position="top-center" />
-            <div className={WatchCss.watchContainer}>
-              <div className={WatchCss.containerElements}>
-                <div className={WatchCss.leftElements}>
-                  <div className={WatchCss.mainVideo}>
-                    <video
-                      src={videoData.formats[videoData.formats.length - 1].url}
-                      autoPlay
-                      controls
-                    />
-                  </div>
-                  <div className={WatchCss.videoInfo}>
-                    <div className={WatchCss.title}>
-                      <p>{videoData.title}</p>
-                    </div>
-                    <div className={WatchCss.channelInfo}>
-                      <div className={WatchCss.leftInfo}>
-                        <img
-                          src={
-                            channelData.thumbnail[
-                              channelData.thumbnail.length - 1
-                            ].url
-                          }
-                          alt="ch-thumbnail"
-                        />
-                        <div className={WatchCss.titleSub}>
-                          <p>{channelData.title}</p>
-                          <p>{channelData.subscriberCount} subscribers</p>
-                        </div>
-                      </div>
-
-                      <div className={WatchCss.rightInfo}>
-                        <div className={WatchCss.views}>
-                          <IoEyeOutline />
-                          <p>
-                            {videoData.viewCount >= 1000
-                              ? videoData.viewCount < 1000000
-                                ? Math.floor(videoData.viewCount / 1000) + "K"
-                                : Math.floor(videoData.viewCount / 1000000) +
-                                  "M"
-                              : videoData.viewCount}
-                          </p>
-                        </div>
-                        {token !== null ? (
-                          isSaved === false ? (
-                            <div
-                              className={WatchCss.watchLater}
-                              onClick={(e) => {
-                                addToWatchLater(e);
-                              }}
-                            >
-                              <MdSaveAlt />
-                              <p>Save</p>
-                            </div>
-                          ) : (
-                            <div
-                              className={WatchCss.watchLater}
-                              onClick={(e) => {
-                                removeFromWatchLater(e);
-                              }}
-                            >
-                              <IoMdRemoveCircleOutline />
-                              <p>Remove</p>
-                            </div>
-                          )
-                        ) : null}
-                      </div>
-                    </div>
-                  </div>
+            <div className={WatchCss.containerElements}>
+              <div className={WatchCss.leftElements}>
+                <div className={WatchCss.mainVideo}>
+                  <video
+                    src={videoData.formats[videoData.formats.length - 1].url}
+                    autoPlay
+                    controls
+                  />
                 </div>
-                <div className={WatchCss.rightElements}>
-                  <div className={WatchCss.relatedContainer}>
-                    {related.map((relVid, ind) => {
-                      return relVid.type === "video" ? (
-                        <Link to={`/watch/${relVid.videoId}`} key={ind}>
-                          <div className={WatchCss.relatedElements}>
-                            <div className={WatchCss.relatedLeftElements}>
-                              <div className={WatchCss.relatedThumbnail}>
-                                <img
-                                  src={
-                                    relVid.thumbnail[
-                                      relVid.thumbnail.length - 1
-                                    ].url
-                                  }
-                                  alt="thumbnail"
-                                />
-                              </div>
-                              <div className={WatchCss.timeStamp}>
-                                <p>{relVid.lengthText}</p>
-                              </div>
-                            </div>
-                            <div className={WatchCss.relatedRightElements}>
-                              <div className={WatchCss.relatedTitle}>
-                                <p>{relVid.title}</p>
-                              </div>
-                              <div className={WatchCss.relatedChannelName}>
-                                <p>{relVid.channelTitle}</p>
-                              </div>
-                              <div className={WatchCss.relatedViewsDate}>
-                                <p>
-                                  {relVid.viewCount >= 1000
-                                    ? relVid.viewCount < 1000000
-                                      ? Math.floor(relVid.viewCount / 1000) +
-                                        "K"
-                                      : Math.floor(relVid.viewCount / 1000000) +
-                                        "M"
-                                    : relVid.viewCount}{" "}
-                                  • {relVid.publishedTimeText}
-                                </p>
-                              </div>
-                            </div>
+                <div className={WatchCss.videoInfo}>
+                  <div className={WatchCss.title}>
+                    <p>{videoData.title}</p>
+                  </div>
+                  <div className={WatchCss.channelInfo}>
+                    <div className={WatchCss.leftInfo}>
+                      <img
+                        src={
+                          channelData.thumbnail[
+                            channelData.thumbnail.length - 1
+                          ].url
+                        }
+                        alt="ch-thumbnail"
+                      />
+                      <div className={WatchCss.titleSub}>
+                        <p>{channelData.title}</p>
+                        <p>{channelData.subscriberCount} subscribers</p>
+                      </div>
+                    </div>
+
+                    <div className={WatchCss.rightInfo}>
+                      <div className={WatchCss.views}>
+                        <IoEyeOutline />
+                        <p>
+                          {videoData.viewCount >= 1000
+                            ? videoData.viewCount < 1000000
+                              ? Math.floor(videoData.viewCount / 1000) + "K"
+                              : Math.floor(videoData.viewCount / 1000000) + "M"
+                            : videoData.viewCount}
+                        </p>
+                      </div>
+                      {token !== null ? (
+                        isSaved === false ? (
+                          <div
+                            className={WatchCss.watchLater}
+                            onClick={(e) => {
+                              addToWatchLater(e);
+                            }}
+                          >
+                            <MdSaveAlt />
+                            <p>Save</p>
                           </div>
-                        </Link>
-                      ) : null;
-                    })}
+                        ) : (
+                          <div
+                            className={WatchCss.watchLater}
+                            onClick={(e) => {
+                              removeFromWatchLater(e);
+                            }}
+                          >
+                            <IoMdRemoveCircleOutline />
+                            <p>Remove</p>
+                          </div>
+                        )
+                      ) : null}
+                    </div>
                   </div>
                 </div>
               </div>
+              <div className={WatchCss.rightElements}>
+                <div className={WatchCss.relatedContainer}>
+                  {related.map((relVid, ind) => {
+                    return relVid.type === "video" ? (
+                      <Link to={`/watch/${relVid.videoId}`} key={ind}>
+                        <div className={WatchCss.relatedElements}>
+                          <div className={WatchCss.relatedLeftElements}>
+                            <div className={WatchCss.relatedThumbnail}>
+                              <img
+                                src={
+                                  relVid.thumbnail[relVid.thumbnail.length - 1]
+                                    .url
+                                }
+                                alt="thumbnail"
+                              />
+                            </div>
+                            <div className={WatchCss.timeStamp}>
+                              <p>{relVid.lengthText}</p>
+                            </div>
+                          </div>
+                          <div className={WatchCss.relatedRightElements}>
+                            <div className={WatchCss.relatedTitle}>
+                              <p>{relVid.title}</p>
+                            </div>
+                            <div className={WatchCss.relatedChannelName}>
+                              <p>{relVid.channelTitle}</p>
+                            </div>
+                            <div className={WatchCss.relatedViewsDate}>
+                              <p>
+                                {relVid.viewCount >= 1000
+                                  ? relVid.viewCount < 1000000
+                                    ? Math.floor(relVid.viewCount / 1000) + "K"
+                                    : Math.floor(relVid.viewCount / 1000000) +
+                                      "M"
+                                  : relVid.viewCount}{" "}
+                                • {relVid.publishedTimeText}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    ) : null;
+                  })}
+                </div>
+              </div>
             </div>
-          </>
+          </div>
         ) : null
-      ) : null}
+      ) : (
+        <Loader />
+      )}
     </>
   );
 }

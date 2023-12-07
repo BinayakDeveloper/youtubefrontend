@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Loader from "./Loader";
 import WatchlaterCss from "../styles/Watchlater.module.scss";
 import warningImg from "../assets/Warning.gif";
 import WatchlaterVideoCard from "./WatchlaterVideoCard";
@@ -24,8 +25,8 @@ function Watchlater() {
           token,
         });
         if (response.data.status) {
-          setId(response.data.videoId);
-          setDbIds(response.data.videoId);
+          setId(response.data.data.videoId);
+          setDbIds(response.data.data.videoId);
           setToken(token);
           setIsLogged(true);
         } else {
@@ -89,7 +90,9 @@ function Watchlater() {
             <p>Login First To Use This Feature</p>
           </div>
         </div>
-      ) : null}
+      ) : (
+        <Loader />
+      )}
     </>
   );
 }

@@ -121,7 +121,12 @@ function Navbar() {
             </div>
           </div>
 
-          <div className={NavbarCss.end}>
+          <div
+            className={NavbarCss.end}
+            onClick={() => {
+              navigate("/dashboard");
+            }}
+          >
             <div
               className={NavbarCss.mobSearch}
               onClick={() => setSecStatus(true)}

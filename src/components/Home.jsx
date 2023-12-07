@@ -38,14 +38,14 @@ function Home() {
         const response = (await axios.request(options)).data.data;
         let curToken = localStorage.getItem("sessionId");
 
-        let userStatus = await axios.post(process.env.REACT_APP_USERDATA, {
+        let { data } = await axios.post(process.env.REACT_APP_USERDATA, {
           key: "thisisthecloneofyoutubemadebybinayakdev",
           token: curToken,
         });
 
-        if (userStatus.data.status) {
+        if (data.status) {
           setToken(curToken);
-          setAllId(userStatus.data.videoId);
+          setAllId(data.data.videoId);
         } else {
           setToken(null);
         }
@@ -85,9 +85,7 @@ function Home() {
               ) : null;
             })
           ) : (
-            <div className={HomeCss.loader}>
-              <Loader />
-            </div>
+            <Loader />
           )}
         </div>
       </div>

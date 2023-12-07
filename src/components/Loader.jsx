@@ -1,14 +1,16 @@
-import loaderCss from "../styles/Loader.module.scss";
+import LoaderCss from "../styles/Loader.module.scss";
 
 function Loader() {
   return (
     <>
-      <div className={loaderCss.loaderContainer}>
-        <div className={loaderCss.loaderElement}>
-          <div className={loaderCss.loader}></div>
-        </div>
-        <div className={loaderCss.text}>
-          <p>Loading</p>
+      <div className={LoaderCss.loader}>
+        <div className={LoaderCss.loaderContainer}>
+          <div className={LoaderCss.loaderElement}>
+            <div className={LoaderCss.loader}></div>
+          </div>
+          <div className={LoaderCss.text}>
+            <p>Loading</p>
+          </div>
         </div>
       </div>
     </>
