@@ -43,13 +43,7 @@ function SearchVideo() {
         });
         if (userStatus.data.status) {
           setToken(curToken);
-          let id = (
-            await axios.post(process.env.REACT_APP_ALL_VIDEO_ID, {
-              key: "thisisthecloneofyoutubemadebybinayakdev",
-              token: curToken,
-            })
-          ).data;
-          setAllId(id.videoIds);
+          setAllId(userStatus.videoId);
         } else {
           setToken(null);
         }

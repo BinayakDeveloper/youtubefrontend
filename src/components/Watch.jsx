@@ -89,26 +89,25 @@ function Watch() {
     async function tokenValidate() {
       let token = localStorage.getItem("sessionId");
       if (token !== null) {
-        let { data } = await axios.post(process.env.REACT_APP_USERDATA, {
-          key: "thisisthecloneofyoutubemadebybinayakdev",
-          token: token,
-        });
-        if (data.status) {
+        let userStatus = (
+          await axios.post(process.env.REACT_APP_USERDATA, {
+            key: "thisisthecloneofyoutubemadebybinayakdev",
+            token: token,
+          })
+        ).data;
+        console.log(userStatus);
+        if (userStatus.status) {
           setToken(token);
-          let ids = (
-            await axios.post(process.env.REACT_APP_ALL_VIDEO_ID, {
-              key: "thisisthecloneofyoutubemadebybinayakdev",
-              token: token,
-            })
-          ).data;
-          setAddedVideo(ids.videoIds);
-          if (ids.videoIds.includes(videoData.id)) {
+          setAddedVideo(userStatus.videoId);
+          if (userStatus.videoId.includes(videoData.id)) {
             setIsSaved(true);
           } else {
             setIsSaved(false);
           }
           setLoaded(true);
         }
+      } else {
+        setLoaded(true);
       }
     }
     tokenValidate();

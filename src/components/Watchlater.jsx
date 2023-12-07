@@ -19,13 +19,13 @@ function Watchlater() {
       setLoaded(true);
     } else {
       async function userValidate() {
-        let response = await axios.post(process.env.REACT_APP_ALL_VIDEO_ID, {
+        let response = await axios.post(process.env.REACT_APP_USERDATA, {
           key: "thisisthecloneofyoutubemadebybinayakdev",
           token,
         });
         if (response.data.status) {
-          setId(response.data.videoIds);
-          setDbIds(response.data.videoIds);
+          setId(response.data.videoId);
+          setDbIds(response.data.videoId);
           setToken(token);
           setIsLogged(true);
         } else {

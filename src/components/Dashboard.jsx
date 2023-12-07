@@ -44,7 +44,7 @@ function Dashboard() {
                 </div>
 
                 <div className={DashboardCss.userName}>
-                  <p>Binayak</p>
+                  <p>{userData.name}</p>
                 </div>
               </div>
 

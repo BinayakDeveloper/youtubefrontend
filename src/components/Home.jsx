@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import HomeCss from "../styles/Home.module.scss";
-
 import VideoCard from "./VideoCard";
+import Loader from "./Loader";
 
 function Home() {
   const [videos, setVideos] = useState([]);
   const [token, setToken] = useState(null);
   const [allId, setAllId] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   const [api, setApi] = useState(
     "8dd1c0187dmsh0dc7067a0d6ad15p11b7dbjsn599a10df85de"
@@ -36,23 +37,21 @@ function Home() {
       try {
         const response = (await axios.request(options)).data.data;
         let curToken = localStorage.getItem("sessionId");
+
         let userStatus = await axios.post(process.env.REACT_APP_USERDATA, {
           key: "thisisthecloneofyoutubemadebybinayakdev",
           token: curToken,
         });
+
         if (userStatus.data.status) {
           setToken(curToken);
-          let id = (
-            await axios.post(process.env.REACT_APP_ALL_VIDEO_ID, {
-              key: "thisisthecloneofyoutubemadebybinayakdev",
-              token: curToken,
-            })
-          ).data;
-          setAllId(id.videoIds);
+          setAllId(userStatus.data.videoId);
         } else {
           setToken(null);
         }
+
         setVideos(response);
+        setLoaded(true);
       } catch {
         setApi(allApi[index]);
         index++;
@@ -67,23 +66,29 @@ function Home() {
     <>
       <div className={HomeCss.homeVideos}>
         <div className={HomeCss.contents}>
-          {videos.map((vid, ind) => {
-            return vid.type === "video" ? (
-              <VideoCard
-                key={ind}
-                token={token}
-                allId={allId}
-                videoId={vid.videoId}
-                thumbnailUrl={vid.thumbnail[2].url}
-                vidLength={vid.lengthText}
-                channelLogo={vid.channelThumbnail[0].url}
-                title={vid.title}
-                channelName={vid.channelTitle}
-                views={vid.viewCount}
-                publishedTime={vid.publishedTimeText}
-              />
-            ) : null;
-          })}
+          {loaded ? (
+            videos.map((vid, ind) => {
+              return vid.type === "video" ? (
+                <VideoCard
+                  key={ind}
+                  token={token}
+                  allId={allId}
+                  videoId={vid.videoId}
+                  thumbnailUrl={vid.thumbnail[2].url}
+                  vidLength={vid.lengthText}
+                  channelLogo={vid.channelThumbnail[0].url}
+                  title={vid.title}
+                  channelName={vid.channelTitle}
+                  views={vid.viewCount}
+                  publishedTime={vid.publishedTimeText}
+                />
+              ) : null;
+            })
+          ) : (
+            <div className={HomeCss.loader}>
+              <Loader />
+            </div>
+          )}
         </div>
       </div>
     </>
