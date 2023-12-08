@@ -121,12 +121,7 @@ function Navbar() {
             </div>
           </div>
 
-          <div
-            className={NavbarCss.end}
-            onClick={() => {
-              navigate("/dashboard");
-            }}
-          >
+          <div className={NavbarCss.end}>
             <div
               className={NavbarCss.mobSearch}
               onClick={() => setSecStatus(true)}
@@ -134,7 +129,13 @@ function Navbar() {
               <IoSearchSharp />
             </div>
             {Object.keys(userData).length !== 0 ? (
-              <p>{userData.name.slice(0, 1).toUpperCase()}</p>
+              <p
+                onClick={() => {
+                  navigate("/dashboard");
+                }}
+              >
+                {userData.name.slice(0, 1).toUpperCase()}
+              </p>
             ) : (
               <VscAccount />
             )}
