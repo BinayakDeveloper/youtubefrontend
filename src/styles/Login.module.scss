@@ -1,187 +1,191 @@
 .toastContainer {
-    top: 50px;
+  top: 50px;
 }
 
 .loginContainer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-    >.loginElements {
-        padding: 50px 30px;
-        border-radius: 15px;
-        background: #ececec;
+  > .loginElements {
+    padding: 50px 30px;
+    border-radius: 15px;
+    background: #ececec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > .leftElements {
+      background: #fff;
+      padding: 30px 15px;
+      border-radius: 10px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      gap: 15px;
+
+      > .top {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
+        gap: 2px;
 
-        >.leftElements {
-            background: #fff;
-            padding: 30px 15px;
-            border-radius: 10px;
+        > h2 {
+          font-size: 1.7rem;
+        }
+      }
+
+      > .bottom {
+        width: 100%;
+
+        > form {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          gap: 15px;
+
+          > .emailInp,
+          > .passInp {
             display: flex;
+            flex-direction: column;
             align-items: flex-start;
             justify-content: center;
-            flex-direction: column;
-            gap: 15px;
+            gap: 2px;
+            margin-top: 10px;
 
-            >.top {
-                display: flex;
-                flex-direction: column;
-                gap: 2px;
-
-                >h2 {
-                    font-size: 1.7rem;
-                }
+            > span {
+              font-size: 0.9rem;
+              font-weight: bold;
+              letter-spacing: 0.8px;
             }
 
-            >.bottom {
-                width: 100%;
+            > input {
+              width: 100%;
+              outline: 0;
+              border: 2px solid #ccc;
+              padding: 10px;
+              border-radius: 5px;
+              font-size: 0.9rem;
+              transition: 0.5s ease;
 
-                >form {
-                    display: flex;
-                    justify-content: center;
-                    flex-direction: column;
-                    gap: 15px;
-
-                    >.emailInp,
-                    >.passInp {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-start;
-                        justify-content: center;
-                        gap: 2px;
-                        margin-top: 10px;
-
-                        >span {
-                            font-size: 0.9rem;
-                            font-weight: bold;
-                            letter-spacing: 0.8px;
-                        }
-
-                        >input {
-                            width: 100%;
-                            outline: 0;
-                            border: 2px solid #ccc;
-                            padding: 10px;
-                            border-radius: 5px;
-                            font-size: 0.9rem;
-                            transition: 0.5s ease;
-
-                            &:focus {
-                                border: 2px solid rgb(0, 218, 0);
-                            }
-                        }
-
-                        >a {
-                            margin-top: 5px;
-                            width: 100%;
-                            text-align: end;
-                            text-decoration: none;
-                            color: rgb(175, 0, 175);
-                        }
-                    }
-
-                    >.submitBtn {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        flex-direction: column;
-                        gap: 10px;
-
-                        >button {
-                            width: 100%;
-                            border: 0;
-                            background-color: rgb(207, 0, 207);
-                            border-radius: 5px;
-                            font-size: 1rem;
-                            font-weight: bold;
-                            letter-spacing: 0.8px;
-                            color: #fff;
-                            padding: 7px 0;
-                            cursor: pointer;
-                            transition: 0.2s linear;
-
-                            &:hover {
-                                background-color: #000;
-                            }
-                        }
-
-                        >p {
-                            color: #676767;
-
-                            >a {
-                                text-decoration: none;
-                                color: purple;
-                                margin-left: 3px;
-                            }
-                        }
-                    }
-                }
+              &:focus {
+                border: 2px solid rgb(0, 218, 0);
+              }
             }
-        }
 
-        >.rightElements {
+            > a {
+              margin-top: 5px;
+              width: 100%;
+              text-align: end;
+              text-decoration: none;
+              color: rgb(175, 0, 175);
+            }
+          }
+
+          > .submitBtn {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-left: 20px;
-            min-width: 350px;
+            flex-direction: column;
+            gap: 10px;
 
-            >img {
-                width: 350px;
+            > button {
+              width: 100%;
+              border: 0;
+              background-color: rgb(207, 0, 207);
+              border-radius: 5px;
+              font-size: 1rem;
+              font-weight: bold;
+              letter-spacing: 0.8px;
+              color: #fff;
+              padding: 7px 0;
+              cursor: pointer;
+              transition: 0.2s linear;
+
+              &:hover {
+                background-color: #000;
+              }
             }
+
+            > p {
+              color: #676767;
+
+              > a {
+                text-decoration: none;
+                color: purple;
+                margin-left: 3px;
+              }
+            }
+          }
         }
+      }
     }
+
+    > .rightElements {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 20px;
+      min-width: 350px;
+      min-height: 350px;
+
+      > img {
+        height: 350px;
+        width: 350px;
+      }
+    }
+  }
 }
 
-@media screen and (max-width:1300px) {
-    .loginContainer {
-        position: relative;
-        top: 0;
-        left: 0;
-        transform: translate(0, 0);
+@media screen and (max-width: 1300px) {
+  .loginContainer {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
 
-        >.loginElements {
-            flex-direction: column-reverse;
-            border-radius: 0;
-            gap: 20px;
+    > .loginElements {
+      flex-direction: column-reverse;
+      border-radius: 0;
+      gap: 20px;
 
-            >.leftElements {
-                padding: 20px 15px;
+      > .leftElements {
+        padding: 20px 15px;
 
-                >.top {
-                    width: 100%;
-                    text-align: center;
-                }
-            }
+        > .top {
+          width: 100%;
+          text-align: center;
         }
+      }
     }
+  }
 }
 
-@media screen and (max-width:500px) {
-    .loginContainer {
-        >.loginElements {
-            padding: 20px 0;
+@media screen and (max-width: 500px) {
+  .loginContainer {
+    > .loginElements {
+      padding: 20px 0;
 
-            >.leftElements {
-                width: 95%;
-                gap: 5px;
+      > .leftElements {
+        width: 95%;
+        gap: 5px;
 
-                >.top {
-                    width: 100%;
-                    text-align: center;
-                }
-            }
-
-            >.rightElements {
-                min-width: auto;
-
-                >img {
-                    width: 200px;
-                }
-            }
+        > .top {
+          width: 100%;
+          text-align: center;
         }
+      }
+
+      > .rightElements {
+        min-height: 200px;
+        min-width: auto;
+
+        > img {
+          height: 200px;
+          width: 200px;
+        }
+      }
     }
+  }
 }
